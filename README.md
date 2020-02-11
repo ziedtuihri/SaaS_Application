@@ -1,7 +1,7 @@
 # Conversion of a MySQL App to Multi-Tenant
 <pre>
 Let me first start by saying that the technique described below was not invented by me.
-the original source is : <a href="https://opensource.io/it/mysql-multi-tenant/" target="_blank">here </a>
+the original source is : <a href="https://opensource.io/it/mysql-multi-tenant/" target="_blank">here </a> https://opensource.io/it/mysql-multi-tenant/ 
 </pre>
 <h3 style="color : red;"> A Solution Design Pattern </h3>
 <pre>
@@ -15,3 +15,4 @@ the original source is : <a href="https://opensource.io/it/mysql-multi-tenant/" 
 <li> Only grant permission to the views (not tables) to each tenant’s database user</li>
 </ul>
 </pre>
+<h3 style="color : red;">in my file Generate_multiTanentMysql.php i do all steps in opensource.io en PHP script</h3>
