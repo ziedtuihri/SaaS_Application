@@ -19,7 +19,7 @@ Then, the only part of the application that needs to change is the database conn
 <li>Connect to the database as that tenant-specific username</li>
 </ul></pre>
 <h3>Background</h3>
-<pre><h4>
+<p>
 Many years ago I was faced with the challenge to take a legacy web application intended for one 
 customer (tenant) and turn itinto a multi-tenant SaaS application. 
 The app itself was large, but not particularly complex. It used around 60 tables
@@ -29,4 +29,4 @@ The request was to alloweach “tenant” to access the software from a differen
 sharing of data.
 or my solutions Zied Tuihri is with a session with the name of tenant to connect with the 
 string value in database .</h4>
-</pre>
+</p>
