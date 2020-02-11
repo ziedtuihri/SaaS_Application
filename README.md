@@ -33,7 +33,7 @@ string value in database .</h4>
 <br>
 <h3>How to convert your app with the new MySQL Multi-Tenant</h3>
 <p>
- Setting database dynamically according to sub-domain URL with multi host for evry user 'tenant'
- Setting database dynamically according to a ssession is my solution @ziedtuihri with one host 
+ Setting database dynamically according to sub-domain URL with multi host for evry user 'tenant'</p>
+ <p>Setting database dynamically according to a ssession is my solution @ziedtuihri with one host 
   
  </p>
