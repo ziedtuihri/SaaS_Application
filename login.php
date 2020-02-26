@@ -30,16 +30,16 @@
             </center>
             <center>
             <div class="form-group" style="margin-top: 30px;margin-bottom: 20px;width: 200px;">
-                <input id="email_id" name="email" type="email" class="form-control" placeholder="Username" required="">
+                <input id="email_id" name="email" type="text" class="form-control" placeholder="Username" required="">
             </div>
             </center>
             <center>
             <div class="s2-example" style="margin-top: 30px;margin-bottom: 20px;width: 200px;">
                 <select id="select_tenant" class="js-example-basic-single js-states form-control"
-                        style="margin-bottom: 30px; display:none"><option value="0">Select Instance</option></select>
+                        style="margin-bottom: 30px; display:none"></select>
             </div>
             </center>
-            <button onclick="Send_Login()" type="button" value="Login" class="btn btn-primary block full-width m-b">
+            <button onclick="Send_Login()" id="myButton" type="button" value="Login" class="btn btn-primary block full-width m-b">
                 Login
             </button>
         </form>
@@ -47,16 +47,24 @@
     </div>
 </div>
 <!-- Mainly scripts -->
-
 <script>
-
+        var input = document.getElementById("email_id");
+            input.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+        event.preventDefault();
+        // document.getElementById("myButton").click();
+        Send_Login()
+        }
+        });
+</script>
+<script>
 
     function Send_Login() {
 
         username = $("#email_id").val();
         console.log("testing htis value " + username);
         key = "kBZNJGnc5khJzydxGxsyNOwXyjcaAtdytLno5g7G";
-
+    
         $(document).ready(function () {
             $.ajax({
                 url: 'http://tunisyndic.tn/tenant_api/initSession',
@@ -70,7 +78,7 @@
                 success: function (data) {
                     console.log("fdfs"+data);
                     obj = JSON.parse(data);
-                    console.log("this your data  ***." + obj[0]);
+                    console.log("this your data  ***." + obj[0] + "and description ->" + obj[2]);
                     if (obj[0] == 1) {
                         window.location.replace("http://tunisyndic.tn/signin?email="+username);
                     } else if (obj[0] == 0) {
@@ -78,11 +86,14 @@
                         $('#Authentification').show();
                     } else {
                         $('#select_tenant').show();
+                        $('#select_tenant').empty();
+                        $('#select_tenant').append('<option value="0"> Select Instance</option>')
                         var items = obj[1];
+                        var description = obj[2]
                         for (var i = 0; i < items.length; i++) {
                             $('#select_tenant').append($('<option>', {
                                 value: items[i],
-                                text: items[i]
+                                text: description[i]
                             }, '</option>'));
                         }
 
@@ -104,9 +115,9 @@
                     }
                 }
             });
+        
         });
     }
-
 
 </script>
 
@@ -114,7 +125,6 @@
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.js"></script>
-
 </body>
 </html>
 
