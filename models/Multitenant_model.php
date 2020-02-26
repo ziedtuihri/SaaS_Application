@@ -20,9 +20,9 @@ class Multitenant_model extends CI_Model
         $username = "";
         $data = 0;
         $Id_tenant = array();
-
+        $description = array();
         // get members of instance have an email
-        $result = $this->db->query(" SELECT email,id_tenant FROM `prefix_members` WHERE `email` ='" . $email . "'; ");
+        $result = $this->db->query(" SELECT email, id_tenant, description FROM `prefix_members` WHERE `email` ='" . $email . "'; ");
 
         if ($result->num_rows() == 1) {
             $data = 1;
@@ -30,6 +30,8 @@ class Multitenant_model extends CI_Model
             foreach ($result as $columnInfo) {
                 $Id = $columnInfo['id_tenant'];
                 array_push($Id_tenant, $Id);
+                $descriptionB = $columnInfo['description'];
+                array_push($description, $descriptionB);
             }
             $result_suspend = $this->db->query(" SELECT * FROM `prefix_suspend` WHERE `id_tenant` ='" . $Id . "' and etat = 'false'; ");
             if ($result_suspend->num_rows() == 1) {
@@ -40,9 +42,11 @@ class Multitenant_model extends CI_Model
             $result = $result->result_array();
             foreach ($result as $columnInfo) {
                 $Id = $columnInfo['id_tenant'];
+                $descriptionB = $columnInfo['description'];
                 $result_suspend = $this->db->query(" SELECT * FROM `prefix_suspend` WHERE `id_tenant` ='" . $Id . "' and etat = 'false'; ");
                 if ($result_suspend->num_rows() != 1) {
                     array_push($Id_tenant, $Id);
+                    array_push($description, $descriptionB);
                     $data++;
                 }
 
@@ -51,6 +55,7 @@ class Multitenant_model extends CI_Model
 
         $tab[0] = $data;
         $tab[1] = $Id_tenant;
+        $tab[2] = $description;
         return $tab;
     }
 
