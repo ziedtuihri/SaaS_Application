@@ -29,7 +29,7 @@ function tunisyndic_ClientArea(array $params)
         $port = $params["serverport"];
     }
     $domain = $domain . ":" . $port;
-    $form = sprintf("<form action=\"#\"><h3>change your instance name </h3><h3 id=\"simpleName\">".$params['customfields']['Instance']."</h3><h3> To : </h3>
+    $form = sprintf("<form action=\"#\"><h3>change your instance name </h3><h3 id=\"simpleName\">".$params['customfields']['commnts']."</h3><h3> To : </h3>
         <center><div class=\"alert alert-danger\" role=\"alert\" id=\"Authentification\" style=\"display:none; margin-top: 30px;margin-bottom: 20px;width: 200px;\">
                 <span>Authentification échouée nom de l'instance exist</span>
             </div></center>
@@ -364,6 +364,7 @@ function tunisyndic_req($params, $postfields, $rawdata = false)
                     $mysqli->query("UPDATE `tblcustomfieldsvalues` SET `value`='".$array->instance."' ; ");
                 }
                 $mysqli->query("UPDATE `tblcustomfieldsvalues` SET `value`='".$array->instance."' WHERE id = ".$LastId." ");
+
         }
     } else {
         $dataarray = explode("\n", $data);
@@ -375,6 +376,13 @@ function tunisyndic_req($params, $postfields, $rawdata = false)
 
 $mysqli = new mysqli("mysql", "root", "password", "whmcs");
  if(isset($_POST["newInstance"]) && isset($_POST["oldInstance"])){
-            $mysqli->query("UPDATE `tblcustomfieldsvalues` SET `value`='".$_POST["newInstance"]."' WHERE `value` ='".$_POST["oldInstance"]."' ; ");
+ 	if($res = $mysqli->query("SELECT id FROM tblcustomfieldsvalues WHERE `value` ='".$_POST["oldInstance"]."' ;")){
+ 		   foreach ($res as $columnInfo) {
+                        $comments_id = $columnInfo['id'];
+                        $comments_id += 2;
+                    }
+    echo 'id : '.$comments_id;
+    $mysqli->query("UPDATE `tblcustomfieldsvalues` SET `value`='".$_POST["newInstance"]."' WHERE `id` ='". $comments_id ."' ; ");
+ 	}
     }
 ?>
