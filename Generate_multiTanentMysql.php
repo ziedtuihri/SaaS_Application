@@ -34,7 +34,7 @@ $mysqli->query("CREATE TABLE IF NOT EXISTS `prefix_suspend` (`suspend_id` int(11
 
 $sql_result1 = mysqli_query($con, $sql_Full_Tables) or die("execute query 1 All Tables!");
 
-if(empty($_POST['key'])){
+
 
     //this step is the begin of Multi tenant MySql .....
 while ($row1 = mysqli_fetch_array($sql_result1)) {
@@ -109,7 +109,7 @@ while ($row1 = mysqli_fetch_array($sql_result1)) {
     }
 
 }
-}
+
 
 //finally your database is genereted next create users and ensure they only have access to our views.
 
@@ -152,11 +152,9 @@ function blowfish_encrypt($password = "")
     return password_hash($password, PASSWORD_BCRYPT, $options);
 }
 
-if(isset($_POST['key'])){
-    $key = $_POST['key'];
 
-    //  i m generate this key only for security you can chenge with another key if you want.
-    if($key == "kBZNJGnc5khJzydxGxsyNOwXyjcaAtdytLno5g7G"){
+
+
 
         if( isset($_POST['Name_Instance']) && isset($_POST['Email_Instance']) && isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['password']) && isset($_POST['phone']) && isset($_POST['adress']) && isset($_POST['gender'])){
 
@@ -284,6 +282,6 @@ if(isset($_POST['key'])){
     }else {
         echo json_encode(array("success" => false, 'message' => 'Échec invalid Key  !!!!!'));
     }
-}
+
 
 
