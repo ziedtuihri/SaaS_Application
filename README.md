@@ -1,9 +1,6 @@
 # Conversion of a MySQL App to Multi-Tenant
-<pre>
-Let me first start by saying that the technique described below was not invented by me.
-the original source is : <a href="https://opensource.io/it/mysql-multi-tenant/" target="_blank">here </a> https://opensource.io/it/mysql-multi-tenant/ 
-</pre>
-<h3 style="color : red;">in my file Generate_multiTanentMysql.php i do all steps in opensource.io en PHP script</h3>
+
+<h3 style="color : red;">in my file Generate_multiTanentMysql.php i do all steps to convert a simple app to SAAS app with PHP script</h3>
 
 <h3 style="color : red;"> A Solution Design Pattern </h3>
 <pre>
